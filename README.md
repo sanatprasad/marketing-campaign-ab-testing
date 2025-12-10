@@ -1,252 +1,250 @@
-📊 Marketing Campaign Analysis — A/B Testing Project
 
-An end-to-end data analytics and statistical testing project comparing two digital advertising campaigns — Facebook Ads vs Google AdWords — using a full year of daily performance data (365 days, 2019).
+---
 
-The goal is to determine which platform delivers better conversions, ROI, and cost-effectiveness, and to provide actionable recommendations to optimize marketing spend.
+# 📊 Marketing Campaign Analysis — A/B Testing & Regression Project
 
-📝 Project Overview
+**Tools:** Python • Pandas • NumPy • Seaborn • Matplotlib • Scikit-learn • Statsmodels
 
-Marketing teams often run parallel ad campaigns across different platforms. However, determining which platform performs better requires statistical evidence, not assumptions.
+---
 
-This project performs:
+## 📁 Project Repository
 
-A/B Testing (Hypothesis Testing)
+**Suggested Repo Name:**
+👉 `marketing-campaign-ab-testing-analysis`
 
-Correlation Analysis
+---
 
-Linear Regression Modeling
+## 📝 Project Overview
 
-Cost-Per-Conversion & CPC Trend Analysis
+This project performs a full **Marketing Campaign Analysis** comparing **Facebook Ads** and **Google AdWords** using **A/B Testing**, **Statistical Analysis**, **Regression Modeling**, and **Time-Series Insights**.
 
-Weekly & Monthly Seasonality Analysis
+Using **365 days of campaign performance data**, the goal is to identify which advertising platform delivers:
 
-Cointegration Testing (Long-term Spend ↔ Conversion Relationship)
+* Higher **clicks**
+* Better **conversion rates**
+* Lower **cost per conversion (CPC)**
+* Stronger **ROI**
+* More stable long-term performance
 
-Everything is executed programmatically using Python, and insights are communicated visually through structured plots and summary tables.
+The project simulates the work of a **Data Analyst in a marketing agency**, where data-driven insights directly influence ad-spend decisions and campaign optimization strategies.
 
-🚀 Key Objectives
+---
 
-Compare the effectiveness of Facebook Ads vs AdWords on:
+## 🎯 Business Objective
 
-Clicks
+> **Maximize Return on Investment (ROI)** for ad campaigns by identifying the more effective platform between Facebook and AdWords, based on conversions, clicks, engagement, and cost-effectiveness.
 
-Conversions
+---
 
-Cost-per-Click (CPC)
+## 📂 Dataset Description
 
-Cost-per-Conversion (CPCon)
+The dataset contains **daily campaign data for 2019** (Jan 1 – Dec 31), including:
 
-Overall ROI
+| Column          | Description                    |
+| --------------- | ------------------------------ |
+| Date            | Daily timestamp                |
+| Views           | Number of ad impressions       |
+| Clicks          | Number of user clicks          |
+| Conversions     | Desired actions taken by users |
+| Cost            | Daily advertising spend        |
+| CTR             | Click-Through Rate             |
+| Conversion Rate | Conversions / Clicks           |
+| CPC             | Cost per Click                 |
+| CPConversion    | Cost per Conversion            |
 
-Identify statistically superior platform using:
+Datasets exist for **both platforms**, enabling direct comparison.
 
-A/B hypothesis testing
+---
 
-Mean comparison
+# 🛠️ Tools & Technologies Used
 
-P-value significance testing
+* **Python**
+* **Pandas** – Data cleaning & preparation
+* **NumPy** – Numerical operations
+* **Matplotlib & Seaborn** – Data visualization
+* **Scikit-learn** – Linear Regression, Model Evaluation (R², MSE)
+* **Statsmodels** – A/B testing (T-test), Cointegration Test
+* **Jupyter Notebook** – Full analysis workflow
 
-Build predictive regression models to understand:
+---
 
-Relationship between clicks and conversions
+# 📈 Steps Performed in the Project
 
-Expected conversions for different click volumes
+## **1️⃣ Data Cleaning & Preprocessing**
 
-Analyze time-based patterns:
+* Loaded CSV data for both campaigns
+* Converted `date` column to datetime
+* Removed `%` and `$` symbols from numeric columns
+* Converted all metrics to appropriate numeric types
+* Created additional time-based features:
 
-Weekly trends (which weekdays convert best?)
+  * Month
+  * Weekday
+  * Week number
 
-Monthly patterns (which months under/overperform?)
+---
 
-Seasonal drop zones
+## **2️⃣ Exploratory Data Analysis (EDA)**
 
-Provide data-backed marketing strategy recommendations.
+* Summary statistics for clicks, conversions, cost
+* Histograms & KDE plots for distribution analysis
+* Identified high-conversion days and buckets (<6, 6-10, 10-15, >15 conversions)
+* Side-by-side bar charts comparing platform performance
 
-🛠️ Tools & Technologies
+---
 
-{{[ Python }{\textbar}{ Pandas }{\textbar}{ Seaborn }{\textbar}{ Matplotlib }{\textbar}{ Scikit-learn }{\textbar}{ Statsmodels ]}}{}
+## **3️⃣ Correlation Analysis**
 
-Additional tools:
+* Scatter plots of **Clicks vs Conversions**
+* Positive correlations were observed
+* Relationships varied across platforms
+* Facebook showed a stronger click → conversion path
 
-Jupyter Notebook
+---
 
-CSV data source
+## **4️⃣ A/B Testing (Hypothesis Testing)**
 
-Numpy
+Performed a **two-sample T-test** comparing mean conversions:
 
-📂 Project Structure
-📁 Marketing-Campaign-AB-Testing
-│
-├── data/
-│   └── marketing_campaign_2019.csv
-│
-├── notebook/
-│   └── AB Testing (Marketing Campaigns).ipynb
-│
-├── images/
-│   ├── conversion_trends.png
-│   ├── regression_plot.png
-│   ├── weekly_trends.png
-│   └── cpc_comparison.png
-│
-└── README.md
+* **Null Hypothesis (H₀):** No difference between Facebook & AdWords
+* **Alternative Hypothesis (H₁):** Facebook conversions > AdWords conversions
 
-📊 Data Description
+**Result:**
 
-The dataset includes 365 daily observations for both platforms, with columns:
+* p-value < significance level
+* **Reject H₀ → Facebook ads significantly outperform AdWords**
 
-date
+---
 
-views
+## **5️⃣ Regression Modeling**
 
-clicks
+Using Scikit-learn’s **Linear Regression**:
 
-conversions
+* X = Clicks
+* y = Conversions
+* Model trained on daily data
 
-cost
+### 📊 Model Evaluation:
 
-ctr – click-through rate
+* **R² ≈ 0.76** — Strong predictive power
+* **MSE ≈ 2.02**
 
-conversion_rate
+### 🔮 Predictions:
 
-cost_per_click
+* ~50 clicks → ~13 conversions
+* ~80 clicks → ~19 conversions
 
-Additional engineered fields: month, weekday, CPC trends
+This model helps estimate conversions based on expected traffic.
 
-🔍 Analysis Workflow
-1️⃣ Data Cleaning & Preprocessing
+---
 
-Converted date column to datetime
+## **6️⃣ Time-Series & Trend Analysis**
 
-Removed % and $ symbols
+### Weekly Insights
 
-Converted numeric columns to floats
+* Mondays & Tuesdays show **highest conversions**
+* Weekends show moderate, consistent performance
 
-Extracted month and weekday
+### Monthly Insights
 
-Verified missing values & dtypes
+* Significant dips observed in:
+  **February, April, June, August, November**
+* Overall yearly trend → **Upward movement**
 
-2️⃣ Exploratory Data Analysis (EDA)
+---
 
-Distribution plots (KDE + histograms) for clicks and conversions
+## **7️⃣ Cost & CPC Analysis**
 
-Identification of high/low conversion intervals
+* Monthly **Cost per Conversion (CPConversion)** tracked
+* Months with lowest CPC → **May & November**
+* Higher CPC → Lower campaign efficiency
+* Recommended budget shifts to months with better historical ROI
 
-Side-by-side comparison of daily conversion categories (Facebook vs AdWords)
+---
 
-Scatter plots of clicks vs conversions
+## **8️⃣ Cointegration Test (Long-Term Relationship)**
 
-3️⃣ Correlation Analysis
+Tested whether **ad spend** and **conversions** have a stable long-term equilibrium.
 
-Computed Pearson correlation coefficients:
+**Result:**
 
-Facebook clicks ↔ conversions
+* p-value < critical value
+* **Long-term equilibrium exists**
 
-AdWords clicks ↔ conversions
+> Meaning: Increasing spend → reliably increases conversions over time.
 
-Used scatter plots + regression lines to visualize linearity.
+---
 
-4️⃣ A/B Testing (Hypothesis Testing)
+# 🧠 Key Insights & Business Recommendations
 
-Hypotheses:
+### ✔ Facebook is statistically **more effective** than AdWords
 
-H₀ (Null): Mean conversions (Facebook) = Mean conversions (AdWords)
+(T-test + higher conversion buckets)
 
-H₁ (Alternate): Mean conversions differ
+### ✔ Increase spend on months with historically low CPC
 
-Method: Two-sample t-test
+(May, November)
 
-📌 Result:
+### ✔ Focus campaign pushes early in the week
 
-p-value < 0.05 → Reject H₀
+(Monday & Tuesday perform best)
 
-Facebook produced significantly more conversions.
+### ✔ Regression model can predict conversions based on clicks
 
-5️⃣ Regression Modeling
+(Useful for forecasting)
 
-Built linear regression model using:
+### ✔ Strong long-term relationship between spend & conversions
 
-X = clicks
+(Helps in annual budget planning)
 
-y = conversions
+---
 
-Evaluation:
+# 📊 Visualizations Included
 
-R² ≈ 0.76
+* Histograms
+* KDE distributions
+* Scatter plots
+* Weekly/Monthly trend charts
+* Side-by-side bar charts
+* Regression line plots
+* CPC trend lines
 
-MSE ≈ 2.02
+---
 
-Predictions:
+# 🚀 Project Deliverables
 
-~13 conversions for 50 clicks
+* Cleaned dataset
+* Jupyter Notebook with full analysis
+* Visual dashboards & charts
+* Statistical test outputs (T-Test, correlation, cointegration)
+* Regression predictions and model evaluation
+* Detailed insights & recommendations
 
-~19 conversions for 80 clicks
+---
 
-6️⃣ Time Series & Seasonality Analysis
-📅 Weekly Trends
+# 📘 How to Run the Project
 
-Monday & Tuesday have the highest conversions
+```bash
+pip install -r requirements.txt
+jupyter notebook
+```
 
-Weekends are comparatively stable but slightly lower
+Open the file:
 
-🗓️ Monthly Trends
+```
+AB Testing (Marketing Campaigns).ipynb
+```
 
-Months with major drops:
+---
 
-February
+# 📧 Contact
 
-April
+For suggestions or improvements, feel free to open an issue or contribute!
 
-August
+---
 
-November
-
-Overall yearly trend = upward trajectory in conversions.
-
-7️⃣ Cost Per Conversion Analysis
-
-Identified low-CPCon months (high cost efficiency)
-
-Highlighted months requiring budget optimization
-
-8️⃣ Cointegration Testing (Long-Term Relationship)
-
-Tested whether cost and conversions move together long-term.
-
-📌 Result:
-
-p-value < 0.05 → Long-term equilibrium exists
-
-This helps in sustainable budget planning and ROI optimization.
-
-🧠 Insights & Recommendations
-
-Based on analyses:
-
-Facebook outperforms AdWords across conversions, CPC, and cost-efficiency.
-
-Allocate higher budget to Facebook campaigns.
-
-Run aggressive campaigns on Mondays & Tuesdays (highest conversion days).
-
-Shift spend to months with historically lower CPC.
-
-Re-evaluate strategy during low-performing months (Feb, Apr, Aug, Nov).
-
-Use regression predictions for conversion forecasting and KPI planning.
-
-🏁 Conclusion
-
-This project demonstrates how a Data Analyst can use:
-
-A/B testing
-
-Statistical hypothesis testing
-
-Regression modeling
-
-Time-series insights
-
-Business metric evaluation
-
-To drive data-backed decisions in digital marketing.
+If you want, I can also generate:
+✅ A **GitHub repo structure**
+✅ A **requirements.txt**
+✅ A **cover image for the project**
+Just tell me!
