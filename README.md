@@ -7,12 +7,6 @@
 
 ---
 
-## 📁 Project Repository
-
-**Suggested Repo Name:**
-👉 `marketing-campaign-ab-testing-analysis`
-
----
 
 ## 📝 Project Overview
 
